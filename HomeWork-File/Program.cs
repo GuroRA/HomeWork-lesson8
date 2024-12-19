@@ -28,13 +28,26 @@ namespace HomeWork_File
             Console.Write("Введите день дедлайна проекта: ");
             int.TryParse(Console.ReadLine(), out int day);
 
+            if (year > 3000 || year < 1000)
+            {
+                year = 2026;
+            }
+            if (month > 12 || month <= 0)
+            {
+                month = 6;
+            }
+            if (day <= 0 || day > 30)
+            {
+                day = 20;
+            }
+
             Console.WriteLine("Описание проекта: ");
             Project project1 = new Project(Console.ReadLine()!, new DateTime(year, month, day), "ООО Агроторг", Bob);
             
 
             if (project1.Status == ProjectStatus.PROJECT)
             {
-                for (int i = 0; i < taskCount; i++)
+                for (int i = 0; i < Bob.Subordinates.Count; i++)
                 {
                     Console.WriteLine("Описание задачи: ");
                     project1.TasksList.Enqueue(new Task(Console.ReadLine()!, new DateTime(year, month-2, day-5), Bob, Bob.Subordinates[i]));

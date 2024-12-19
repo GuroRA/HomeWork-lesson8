@@ -93,7 +93,19 @@ namespace HomeWork_File
                 int.TryParse(Console.ReadLine(), out int month);
                 Console.Write("Введите день выполнения задания: ");
                 int.TryParse(Console.ReadLine(), out int day);
-
+                if (year > 3000 || year < 1000)
+                {
+                    year = 2026;
+                }
+                if (month > 12 || month <= 0)
+                {
+                    month = 6;
+                }
+                if (day <= 0 || day > 30)
+                { 
+                    day = 20;
+                }
+                Console.WriteLine("Описание выполненой работы работы: ");
                 task.Initiator.reportsFromSubordinates.Add(new Report(Console.ReadLine()!, new DateTime(year, month, day), this));
                 task.Status = TaskStatus.UNDER_REVIEW;
             }
